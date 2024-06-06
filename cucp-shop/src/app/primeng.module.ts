@@ -10,6 +10,7 @@ import { MenuModule} from 'primeng/menu';
 
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
+import { ToastModule } from 'primeng/toast';
 
 //Modulos PrimeNg
 const modPrime: any = [];
@@ -17,7 +18,8 @@ const modPrime: any = [];
 const modPrimeng: any = [
   CardModule,
   InputTextModule,
-  ButtonModule
+  ButtonModule,
+  ToastModule
 ];
 
 const modulosPrimeNG: any = [ 

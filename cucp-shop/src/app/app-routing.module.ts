@@ -7,7 +7,7 @@ import { ProductoListaComponent } from './componentes/producto-lista/producto-li
 const routes: Routes = [
   { path:'login', component: LoginComponent },
   { path:'register', component: RegisterComponent },
-  { path:'', component: ProductoListaComponent }
+  { path:'home', component: ProductoListaComponent }
 ];
 
 @NgModule({
