@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { AuthService } from '../../servicios/auth.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
+import { User } from '../../interfaces/auth';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +14,7 @@ export class RegisterComponent {
 
   registerForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private message: MessageService, private router: Router) {
     this.registerForm = this.fb.group({
       fullname: ['', Validators.required],
       usuario: ['', Validators.required],
@@ -63,9 +67,26 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    if (this.registerForm.valid) {
-      console.log('Form Submitted', this.registerForm.value);
-    }
+
+  }
+
+  enviarRegistro() {
+    console.log('Form Submitted', this.registerForm.value);
+
+    const data = { ...this.registerForm.value };
+    delete data.confirmPassword;
+
+    this.authService.registerUser(data as User).subscribe(
+      response => {
+        console.log('User registered successfully:', response);
+        this.message.add({ severity: 'success', summary: 'Success', detail: 'Registration Aggregate' });
+        this.router.navigate(['/login']);
+      },
+      error => {
+        console.error('Error registering user:', error);
+        this.message.add({ severity: 'error', summary: 'Error', detail: 'Registration failed' });
+      }
+    );
   }
 
 }

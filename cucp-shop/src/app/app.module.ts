@@ -9,6 +9,8 @@ import { PrimengModule } from './primeng.module';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { RegisterComponent } from './componentes/register/register.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -22,10 +24,12 @@ import { RegisterComponent } from './componentes/register/register.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     PrimengModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [
-    provideClientHydration()
+    MessageService,
+    provideClientHydration(),
   ],
   bootstrap: [AppComponent]
 })
