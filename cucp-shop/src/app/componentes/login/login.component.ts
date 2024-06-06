@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
+import { AuthService } from '../../servicios/auth.service';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,27 +13,14 @@ export class LoginComponent {
   
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,  private authService: AuthService, private message: MessageService, private router: Router) {
     this.loginForm = this.fb.group({
-      nombreCompleto: ['', Validators.required],
-      usuario: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [
         Validators.required,
         Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*\\d).{8,}$')
-      ]],
-      confirmPassword: ['', Validators.required]
-    }, {
-      validator: this.mustMatch('password', 'confirmPassword')
+      ]]
     });
-  }
-
-  get nombreCompleto(): AbstractControl {
-    return this.loginForm.get('nombreCompleto')!;
-  }
-
-  get usuario(): AbstractControl {
-    return this.loginForm.get('usuario')!;
   }
 
   get email(): AbstractControl {
@@ -39,10 +29,6 @@ export class LoginComponent {
 
   get password(): AbstractControl {
     return this.loginForm.get('password')!;
-  }
-
-  get confirmPassword(): AbstractControl {
-    return this.loginForm.get('confirmPassword')!;
   }
 
   mustMatch(controlName: string, matchingControlName: string) {
@@ -67,4 +53,28 @@ export class LoginComponent {
       console.log('Form Submitted', this.loginForm.value);
     }
   }
+
+
+
+  login() {
+      const {email, password} = this.loginForm.value;
+
+      this.authService.getUserByEmail(email as string).subscribe(
+        response => {
+          if (response.length > 0 && response[0].password === password) {
+            sessionStorage.setItem('email', email as string);
+            this.router.navigate(['/home']);
+          } else {
+            console.error('User not found');
+            this.message.add({ severity: 'error', summary: 'Error', detail: 'Invalid email or password' });
+          }
+        },
+        error => {
+          console.error('Error retrieving user:', error);
+          this.message.add({ severity: 'error', summary: 'Error', detail: 'An unexpected error occurred' });
+        }
+      );
+    
+  }
+
 }

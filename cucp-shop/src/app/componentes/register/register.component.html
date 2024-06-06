@@ -1,13 +1,13 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="registerForm" (ngSubmit)="enviarRegistro()">
     <p-card header="Registrar Miembro" [style]="{ width: '360px' }">
         <div class="field">
-            <label for="nombreCompleto">Nombre Completo</label>
+            <label for="fullname">Nombre Completo</label>
             <input 
                 type="text" 
                 pInputText 
-                formControlName="nombreCompleto" 
+                formControlName="fullname" 
                 class="w-full" 
-                name="nombreCompleto"
+                name="fullname"
                 placeholder="Teclea tu Nombre Completo" 
             />
         </div>
