@@ -7,5 +7,63 @@
       "email": "cama@gmail.com",
       "password": "Password1*"
     }
+  ],
+  "products": [
+    {
+      "id": "614",
+      "name": "Telefono Celular",
+      "category": "Electronica",
+      "price": "12000",
+      "image": "product-placeholder.svg"
+    },
+    {
+      "id": "418",
+      "name": "Laptop",
+      "category": "Electronica",
+      "price": "14000",
+      "image": "product-placeholder.svg"
+    },
+    {
+      "id": "942",
+      "name": "Lentes Sandia",
+      "category": "Moda",
+      "price": "100",
+      "image": "product-placeholder.svg"
+    },
+    {
+      "id": "644",
+      "name": "Laptop2",
+      "category": "Electronica",
+      "price": "14000",
+      "image": "product-placeholder.svg"
+    },
+    {
+      "id": "467",
+      "name": "Laptop3",
+      "category": "Electronica",
+      "price": "1400",
+      "image": "product-placeholder.svg"
+    },
+    {
+      "id": "932",
+      "name": "Prueba",
+      "category": "prueba",
+      "price": "1000",
+      "image": "product-placeholder.svg"
+    },
+    {
+      "id": "92",
+      "name": "Pruebota",
+      "category": "prueba",
+      "price": "1000",
+      "image": "product-placeholder.svg"
+    },
+    {
+      "id": 536,
+      "name": "Telefono Celular2",
+      "category": "Electronica",
+      "price": "12000",
+      "image": "product-placeholder.svg"
+    }
   ]
 }
