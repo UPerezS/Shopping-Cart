@@ -63,7 +63,7 @@ export class LoginComponent {
         response => {
           if (response.length > 0 && response[0].password === password) {
             sessionStorage.setItem('email', email as string);
-            this.router.navigate(['/home']);
+            this.router.navigate(['/productos']);
           } else {
             console.error('User not found');
             this.message.add({ severity: 'error', summary: 'Error', detail: 'Invalid email or password' });
